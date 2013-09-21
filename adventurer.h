@@ -1,4 +1,9 @@
 #include <iostream>
+#include <ctime>
+
+#ifndef ADVENTURER_H
+#define ADVENTURER_H
+
 using namespace std;
 
 class adventurer{
@@ -51,3 +56,55 @@ bool adventurer::inventoryPush(string drop){
     cout<<"Your inventory is already full!\n";
     return false;
 }
+
+class enemy{
+public:
+    int hp;
+    int strength;
+    int maxStrength;
+    string name;
+};
+
+class orc : enemy{
+public:
+    orc();
+    string weapon;
+};
+
+orc::orc(){
+    name = "Gruk";
+    weapon = "club";
+    maxStrength = 500;
+    hp = 100;
+
+    srand(time(NULL));
+    strength = rand()%maxStrength;
+}
+
+class dragon : enemy{
+public:
+    dragon();
+    dragon(string str);
+    void breatheFire();
+    string getName();
+};
+
+dragon::dragon(){
+    name = "Smaug";
+    maxStrength = 1000;
+    hp = 500;
+
+    srand(time(NULL));
+    strength = rand()%maxStrength;
+}
+
+dragon::dragon(string str){
+    *this = dragon();
+    name = str;
+}
+
+string dragon::getName(){
+    return name;
+}
+
+#endif

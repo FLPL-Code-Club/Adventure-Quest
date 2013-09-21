@@ -1,12 +1,13 @@
 #include <iostream>
 #include <string>
-#include <ctime>
 #include "adventurer.h"
 using namespace std;
 
 void beginJourney(adventurer& hero);
 bool startBattle(adventurer& hero);
 bool fight(adventurer& hero, string enemy);
+bool bossBattle(adventurer& hero);
+void winGame();
 
 int main(){
     srand(time(NULL));
@@ -25,7 +26,7 @@ int main(){
     int choice = rand()%10;
     char open;
     
-    cout<<"Welcome to Adventure Quest 3000™!"<<endl;
+    cout<<"Welcome to Adventure Quest 3000â„¢!"<<endl;
     cout<<"Please enter your name, adventurer..."<<endl;
     getline(cin, hero.name);
     
@@ -66,8 +67,14 @@ int main(){
 }
 
 void beginJourney(adventurer& hero){
+    bool win = false;
     while(hero.hp>0){
-        startBattle(hero);
+        if(hero.wins<10){
+          startBattle(hero);
+        }else{
+          win = bossBattle(hero);
+          break;
+        }
         if(hero.hp<=0){
             cout<<"You have been vanquished.\n";
             cout<<"You won "<<hero.wins<<" battles.\n";
@@ -76,6 +83,9 @@ void beginJourney(adventurer& hero){
         }else{
             cout<<"You have "<<hero.hp<<" health remaining."<<endl;
         }
+    }
+    if(win == true){
+      winGame();
     }
 }
 
@@ -138,4 +148,15 @@ bool fight(adventurer& hero, string enemy){
     system("pause");
     system("cls");
     return success;
+}
+
+bool bossBattle(adventurer& hero){
+  dragon boss = dragon();
+  // cout<<"Strength: "<<boss.strength<<endl;
+  cout<<"Name: "<<boss.getName()<<endl;
+  return true;
+}
+
+void winGame(){
+  cout<<"Yay.\n";
 }
