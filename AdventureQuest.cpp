@@ -31,8 +31,8 @@ int main(){
     getline(cin, hero.name);
     
     cout<<"Welcome, "<<hero.name<<"!"<<endl;
-    system("pause");
-    system("cls");
+    // system("pause");
+    system("clear");
     cout<<"You find yourself in a dark, wooded forest of doom."<<endl;
     
     cout<<"You see a chest labeled \"Free stuff! (No badgers here!)\". Do you open it? (y/n)"<<endl;
@@ -62,7 +62,7 @@ int main(){
     }else{
        cout<<"You move on your way, and grow to a ripe old age.\n You settle in a valley full of wildflowers, and live out your days, happily.\n Your adventure was lame."<<endl;
     }
-    system("pause");
+    // system("pause");
     return 0;
 }
 
@@ -90,7 +90,7 @@ void beginJourney(adventurer& hero){
 }
 
 bool startBattle(adventurer& hero){
-    bool success = true; 
+    bool success = true;
     string enemies[5] = {"a goblin",
                          "a wolf",
                          "a wild charizard",
@@ -110,7 +110,7 @@ bool startBattle(adventurer& hero){
         case 'R':
              cout<<"You ran away, like a pansy. Your hero-card is revoked."<<endl;  break;
         default:
-             cout<<"You got confused, and didn't fight or run.  The enemy took advantage of your confusion, and swiftly devoured you. The end. Goodbye... \n\n\n\n\n\n\n\n For real, goodbye.\n";
+             cout<<"You got confused, and didn't fight or run. The enemy took advantage of your confusion, and swiftly devoured you. The end. Goodbye... \n\n\n\n\n\n\n\n For real, goodbye.\n"; exit(0);
     }
     return success;
 }
@@ -145,10 +145,15 @@ bool fight(adventurer& hero, string enemy){
         cout<<"You got your butt kicked by "<<enemy<<"!\nYou took "<<damage<<" damage!"<<endl;
         hero.losses++;
     }
-    system("pause");
-    system("cls");
+    // system("pause");
+    // system("clear");
     return success;
 }
+
+// bool fight(adventurer& hero, enemy badGuy){
+//   bool success = false;
+//   return success;
+// }
 
 bool bossBattle(adventurer& hero){
   dragon boss = dragon();
